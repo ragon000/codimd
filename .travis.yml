@@ -38,3 +38,11 @@ jobs:
         - 12
       script:
         - yarn run mocha-suite
+    - stage: Build
+      name: Build front-end bundle
+      node_js:
+        - 12
+      script:
+        - yarn install --frozen-lockfile
+        - yarn install --production=false --frozen-lockfile
+        - yarn run build
