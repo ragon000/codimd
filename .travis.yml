@@ -56,4 +56,4 @@ deploy:
   skip_cleanup: true
   draft: true
   on:
-    branch: true
+    branch: ci-build-and-release
