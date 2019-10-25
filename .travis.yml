@@ -43,11 +43,11 @@ jobs:
       node_js:
         - 12
       script:
-#        - yarn install --frozen-lockfile
-#        - yarn install --production=false --frozen-lockfile
-#        - yarn run build
-#        - zip -r release.zip ./
-        - echo "ich bin ein Test" > release.zip
+        - yarn install --frozen-lockfile
+        - yarn install --production=false --frozen-lockfile
+        - yarn run build
+        - zip -rq release.zip ./
+#        - echo "ich bin ein Test" > release.zip
 
 deploy:
   provider: releases
@@ -56,4 +56,6 @@ deploy:
   skip_cleanup: true
   draft: true
   on:
-    branch: ci-build-and-release
+    all_branches_: true
+  name: "$TRAVIS_COMMIT - Toller Release"
+  body: "Ich bin ein ganz toller Release, bitte lad mich runter.\n$TRAVIS_COMMIT_MESSAGE"
