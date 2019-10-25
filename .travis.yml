@@ -46,3 +46,13 @@ jobs:
         - yarn install --frozen-lockfile
         - yarn install --production=false --frozen-lockfile
         - yarn run build
+        - zip -r release.zip ./
+
+deploy:
+  provider: releases
+  api_key: "$GITHUB_API_TOKEN"
+  file: "release.zip"
+  skip_cleanup: true
+  draft: true
+  on:
+    branches: *
