@@ -1,0 +1,26 @@
+name: Build
+on: [push]
+
+jobs:
+  dynamic:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v1
+
+    - name: Setup node
+      uses: actions/setup-node@v1
+      with:
+        node-wersion: 12
+
+    - run: yarn install --frozen-lockfile
+    - run: yarn install --production=false --frozen-lockfile
+    - run: yarn run build
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@master
+      with:
+        name: release
+        path: ./
