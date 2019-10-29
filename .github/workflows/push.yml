@@ -1,5 +1,5 @@
 name: Build
-on: [push]
+on: [push, pull_request]
 
 jobs:
   dynamic:
@@ -19,8 +19,13 @@ jobs:
     - run: yarn install --production=false --frozen-lockfile
     - run: yarn run build
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@master
+    - run: zip -rq release.zip ./
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
       with:
-        name: release
-        path: ./
+        draft: true
+        files: release.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
