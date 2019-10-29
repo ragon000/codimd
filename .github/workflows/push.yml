@@ -21,10 +21,15 @@ jobs:
 
     - run: zip -rq release.zip ./
 
+    - uses: actions/upload-artifact@master
+      with:
+        name: release
+        path: release.zip
+
     - name: Release
       uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
       with:
-        draft: true
         files: release.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
