@@ -750,7 +750,7 @@ export function generateToc (id) {
   })
   /* eslint-enable no-unused-vars */
   if (target.text() === 'undefined') { target.html('') }
-  const tocMenu = $('<div class="toc-menu"></div')
+  const tocMenu = $('<div class="toc-menu"></div>')
   const toggle = $('<a class="expand-toggle" href="#">Expand all</a>')
   const backtotop = $('<a class="back-to-top" href="#">Back to top</a>')
   const gotobottom = $('<a class="go-to-bottom" href="#">Go to bottom</a>')
